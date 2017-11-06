@@ -37,7 +37,7 @@ def string_heads(L):
 
 D = {}
 for e in P:
-    print(e.upper())
+    #print(e.upper())
     abbr = e[0]
     forbidden_abbrs = list(D.keys()) + string_heads(D.keys())
     while abbr in forbidden_abbrs:
@@ -46,11 +46,16 @@ for e in P:
             oldval = D.pop(abbr)
             newkey = oldkey + oldval[len(abbr)]
             D[newkey] = oldval
-            print("extended", oldval, "to", newkey)
+            #print("extended", oldval, "to", newkey)
         # else abbr was in the list of forbidden substrs, not real keys
         abbr += e[len(abbr)]
-        print("and extended", e, "to", abbr)
+        #print("and extended", e, "to", abbr)
         forbidden_abbrs = list(D.keys()) + string_heads(D.keys()) #update
     D[abbr] = e
-    print("good:", abbr)
-print(D)
+    #print("good:", abbr)
+
+assert(len(D) == len(P))
+k = list(D.keys())
+k.sort()
+for e in k:
+    print(e + '\t' + D[e])
