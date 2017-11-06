@@ -29,10 +29,8 @@ P.sort()
 
 D = {}
 for e in P:
-    if e[0] not in D.keys():
-        D[e[0]] = e
-    else:
-        D[e] = e
+    abbr = e[0]
+    while abbr in D.keys():
+        abbr += e[len(abbr)]
+    D[abbr] = e
 print(D)
-
-
